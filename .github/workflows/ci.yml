@@ -55,10 +55,4 @@ jobs:
       - name: Cargo clippy
         run: cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings
       - name: Cargo test
-        shell: bash
-        run: |
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            cargo test --manifest-path src-tauri/Cargo.toml --no-run
-            find src-tauri/target -name "WebView2Loader.dll" -exec cp -f {} src-tauri/target/debug/deps/ \; 2>/dev/null || true
-          fi
-          cargo test --manifest-path src-tauri/Cargo.toml
+        run: cargo test --manifest-path src-tauri/Cargo.toml

@@ -4,6 +4,7 @@
   "description": "Production-ready, batteries-included starter template for Tauri 2 + React + TypeScript + Rust + SQLite",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
     "dev": "pnpm tauri dev",
     "build": "pnpm tauri build",

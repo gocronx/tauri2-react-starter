@@ -49,11 +49,12 @@ The application follows a **strict 4-layer backend + reactive frontend** archite
 6. **Tauri 2 Plugin Config Safety (Runtime Schema 防呆)**:
    - `tauri.conf.json` 中的插件参数在**应用启动运行时**动态反序列化，仅靠 `cargo check` 无法发现配置缺失（如 `updater` 必填 `pubkey`、`dialog` 必须为 `{}`）。
    - 凡是增删改插件，必须在 `src-tauri/src/lib.rs` 的单元测试 `test_tauri_conf_and_plugins_validity` 中声明校验，并在真实运行/测试中验证通过。
-7. **三阶闭环验证纪律 (3-Stage Verification)**:
-   - 每次提交或交付前，AI 必须严格执行闭环校验：
-     - ① 类型静态检查：`pnpm typecheck`
-     - ② 单元与契约测试：`pnpm test` 与 `cargo test --manifest-path src-tauri/Cargo.toml`
-     - ③ 启动冒烟测试：确保插件无反序列化 Panic，窗口生命周期正常。
+7. **全量自验证纪律 (Full Verification Before Commit)**:
+   - 每次代码修改或交付前，AI **必须**在本地执行 `pnpm verify` 并确保 100% 通过（涵盖前端代码格式、TypeScript 类型检查、Vitest 单元测试，以及 Rust 代码格式、Clippy 零警告检查和全部 Rust 单元测试）。
+8. **CI/CD 修复闭环追踪铁律 (Remote CI Tracking Discipline)**:
+   - 凡涉及 CI/CD、构建流水线或跨平台环境的修复，AI **严禁**在仅推送代码后就声称“已解决”；**必须**使用 GitHub CLI (`gh run view <run_id>`) 实时轮询追踪远程流水线，直至全部矩阵任务（macOS / Ubuntu / Windows）全部绿灯。
+9. **Windows 平台清单与无头测试规范 (Windows Manifest Protection)**:
+   - Windows 上的 Tauri 依赖需要 Common-Controls v6 (`comctl32.dll` 6.0) 清单。必须保留 `src-tauri/windows-app-manifest.xml` 并通过 `src-tauri/build.rs` 中的 MSVC 链接器原生参数 `/MANIFEST:EMBED` 注入，同时保持 `src-tauri/Cargo.toml` 中 `[[bin]] test = false`，防止 `0xc0000139` 入口点缺失和 `CVT1100` 重复资源冲突。
 
 ---
 
@@ -61,6 +62,7 @@ The application follows a **strict 4-layer backend + reactive frontend** archite
 
 | Task | Command |
 | :--- | :--- |
+| **Full Pre-commit Verification (All Checks)** | `pnpm verify` |
 | **Start Desktop App (Hot Reload)** | `pnpm dev` |
 | **Start Web-Only Dev (Fast UI)** | `pnpm dev:renderer` |
 | **TypeScript Typecheck** | `pnpm typecheck` |
@@ -68,6 +70,7 @@ The application follows a **strict 4-layer backend + reactive frontend** archite
 | **Code Formatting** | `pnpm format` |
 | **Format Check** | `pnpm lint` |
 | **Rust Backend Check** | `cargo check --manifest-path src-tauri/Cargo.toml` |
+| **Rust Clippy (Strict)** | `cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings` |
 | **Rust Tests** | `cargo test --manifest-path src-tauri/Cargo.toml` |
 | **Build Desktop Installer** | `pnpm build` |
 

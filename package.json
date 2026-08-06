@@ -16,6 +16,7 @@
     "lint": "prettier --check \"src/**/*.{ts,tsx,css,json}\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,json}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,json}\"",
+    "verify": "pnpm format:check && pnpm typecheck && pnpm test && cargo fmt --manifest-path src-tauri/Cargo.toml --all -- --check && cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings && cargo test --manifest-path src-tauri/Cargo.toml",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
     "rename": "node scripts/rename.js"

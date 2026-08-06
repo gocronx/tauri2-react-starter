@@ -1,0 +1,51 @@
+[package]
+name = "tauri2-react-starter"
+version = "0.1.0"
+description = "Tauri 2 + React + TypeScript + SQLite Starter Template"
+authors = ["Your Name"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.80.0"
+
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.4.0", features = [] }
+
+[dependencies]
+serde_json = { version = "1.0", features = ["preserve_order"] }
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
+tauri = { version = "2.8.0", features = ["tray-icon", "protocol-asset", "image-png"] }
+tauri-plugin-log = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-process = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-window-state = "2"
+tauri-plugin-updater = "2"
+dirs = "5.0"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time", "sync"] }
+thiserror = "2.0"
+rusqlite = { version = "0.31", features = ["bundled", "backup"] }
+auto-launch = "0.5"
+uuid = { version = "1.11", features = ["v4"] }
+tauri-specta = { version = "=2.0.0-rc.20", features = ["javascript", "typescript"] }
+specta = { version = "=2.0.0-rc.20", features = ["derive"] }
+specta-typescript = "0.0.7"
+
+[target.'cfg(any(target_os = "macos", target_os = "windows", target_os = "linux"))'.dependencies]
+tauri-plugin-single-instance = "2"
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+opt-level = "s"
+panic = "unwind"
+strip = "symbols"
+
+[dev-dependencies]
+tempfile = "3"
+tauri = { version = "2.8.0", features = ["test"] }

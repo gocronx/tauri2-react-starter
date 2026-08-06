@@ -1,0 +1,15 @@
+---
+description: Rules for modifying Rust backend in Tauri 2
+globs: src-tauri/**/*.rs
+---
+
+# Rust Backend Layering Rules
+
+1. Always follow the 4-layer separation:
+   - `commands/`: Tauri IPC wrappers returning `Result<T, AppError>`.
+   - `services/`: Business validation & logic.
+   - `database/dao/`: Raw SQL with `rusqlite` and row parsing.
+   - `database/`: Migration and initialization.
+2. Never write SQL outside `dao/`.
+3. Never use `unwrap()` or `expect()`.
+4. Always acquire database lock using `let conn = lock_conn!(db);`.

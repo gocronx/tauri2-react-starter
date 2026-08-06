@@ -1,0 +1,72 @@
+{
+  "app": {
+    "title": "Tauri 2 桌面端脚手架",
+    "subtitle": "现代化跨平台桌面应用开发模板"
+  },
+  "nav": {
+    "dashboard": "仪表盘",
+    "records": "数据管理",
+    "settings": "系统设置"
+  },
+  "dashboard": {
+    "title": "系统概览",
+    "description": "实时监控本地环境与运行时核心指标",
+    "os": "操作系统",
+    "arch": "CPU 架构",
+    "cpus": "CPU 核心数",
+    "version": "应用版本",
+    "quickActions": "快捷操作",
+    "openLogs": "打开日志目录",
+    "openData": "打开数据库目录",
+    "dbStatus": "SQLite 存储状态",
+    "dbDesc": "WAL 模式开启，已接入自动化版本迁移 (Migration)"
+  },
+  "records": {
+    "title": "数据管理",
+    "description": "基于 SQLite 关系数据库的完整 CRUD 演示与本地检索",
+    "searchPlaceholder": "搜索标题或内容...",
+    "newRecord": "新增记录",
+    "empty": "暂无记录，点击右上角创建第一条数据吧！",
+    "edit": "编辑",
+    "delete": "删除",
+    "deleteConfirm": "确认要删除该记录吗？此操作无法撤销。",
+    "form": {
+      "addTitle": "新建记录",
+      "editTitle": "编辑记录",
+      "titleLabel": "标题",
+      "titlePlaceholder": "请输入记录标题",
+      "contentLabel": "详情内容",
+      "contentPlaceholder": "请输入内容详情（选填）",
+      "statusLabel": "状态",
+      "statusActive": "有效 (Active)",
+      "statusArchived": "归档 (Archived)",
+      "cancel": "取消",
+      "save": "保存"
+    }
+  },
+  "settings": {
+    "title": "系统设置",
+    "description": "偏好设置、开机自启与系统信息",
+    "appearance": "外观与主题",
+    "theme": "主题模式",
+    "themeLight": "浅色明亮",
+    "themeDark": "暗黑极夜",
+    "themeSystem": "跟随系统",
+    "language": "界面语言",
+    "langZh": "简体中文",
+    "langEn": "English",
+    "startup": "系统启动与托盘",
+    "autoLaunch": "开机自动启动",
+    "autoLaunchDesc": "在操作系统开机后自动在后台拉起本程序",
+    "trayDesc": "支持点击最小化到系统托盘与全局托盘菜单常驻",
+    "about": "关于脚手架",
+    "aboutDesc": "本项目是由 cc-switch 生产级经验提炼而成的 Tauri 2 + React + Rust 跨平台开箱即用脚手架。"
+  },
+  "common": {
+    "success": "操作成功",
+    "error": "操作失败",
+    "loading": "加载中...",
+    "confirm": "确定",
+    "cancel": "取消"
+  }
+}

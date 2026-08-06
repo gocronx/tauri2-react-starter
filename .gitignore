@@ -1,0 +1,32 @@
+# Node & Build artifacts
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+
+# Rust & Tauri
+src-tauri/target
+src-tauri/gen
+src-tauri/*.log
+
+# Logs & Environment
+*.log
+.env
+.env.*
+!.env.example
+
+# Keys & Secrets
+signer_keys*
+*.key
+*.pub
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

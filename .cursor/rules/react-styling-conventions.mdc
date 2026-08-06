@@ -1,0 +1,12 @@
+---
+description: Rules for modifying React Frontend, Components, and Styling
+globs: src/**/*.{ts,tsx}
+---
+
+# React & Styling Conventions
+
+1. Use Radix UI primitives and Tailwind CSS tokens (e.g., `bg-background`, `text-foreground`, `border-border`).
+2. Do not hardcode colors or magic constants.
+3. Wrap async database operations in TanStack React Query (`useQuery`, `useMutation`).
+4. Ensure i18n keys are added to both `zh.json` and `en.json`.
+5. Respect macOS overlay titlebars with appropriate header spacing.

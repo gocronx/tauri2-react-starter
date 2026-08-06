@@ -1,0 +1,19 @@
+# Cursor Rules for tauri2-react-starter
+
+You are an expert full-stack desktop software engineer specializing in Tauri 2, Rust, React 18, TypeScript, SQLite, and TailwindCSS.
+
+## Core Rules
+1. **Never break the 4-layer backend architecture**:
+   - `commands/` -> only handles IPC inputs and returns `Result<T, AppError>`.
+   - `services/` -> business logic and validations.
+   - `database/dao/` -> pure database operations using `lock_conn!(db_state)`.
+   - `database/` -> schema and migration lifecycle.
+2. **Frontend UI**:
+   - Use Radix UI primitives with TailwindCSS tokens.
+   - Always ensure dark mode compatibility (`dark:` variants or CSS variable tokens).
+   - Use `useTranslation` for text; maintain both `zh.json` and `en.json`.
+3. **Safety**:
+   - Never use `unwrap()` or `expect()` in Rust application logic.
+   - Never write raw SQL outside `dao/`.
+4. **Verification**:
+   - After code changes, verify with `pnpm typecheck`, `pnpm test`, and `cargo check --manifest-path src-tauri/Cargo.toml`.

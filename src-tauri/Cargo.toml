@@ -11,6 +11,11 @@ rust-version = "1.80.0"
 name = "app_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
+[[bin]]
+name = "tauri2-react-starter"
+path = "src/main.rs"
+test = false
+
 [build-dependencies]
 tauri-build = { version = "2.4.0", features = [] }
 
